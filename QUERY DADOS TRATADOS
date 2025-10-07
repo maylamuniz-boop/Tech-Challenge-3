@@ -1,0 +1,82 @@
+WITH dados_decodificados AS (
+    WITH 
+    dicionario_capital AS (
+        SELECT chave AS chave_capital, valor AS descricao_capital FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'capital' AND id_tabela = 'microdados'),
+    dicionario_a003 AS (
+        SELECT chave AS chave_a003, valor AS descricao_a003 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'a003' AND id_tabela = 'microdados'),
+    dicionario_b0011 AS (
+        SELECT chave AS chave_b0011, valor AS descricao_b0011 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0011' AND id_tabela = 'microdados'),
+    dicionario_b0012 AS (
+        SELECT chave AS chave_b0012, valor AS descricao_b0012 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0012' AND id_tabela = 'microdados'),
+    dicionario_b0013 AS (
+        SELECT chave AS chave_b0013, valor AS descricao_b0013 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0013' AND id_tabela = 'microdados'),
+    dicionario_b0014 AS (
+        SELECT chave AS chave_b0014, valor AS descricao_b0014 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0014' AND id_tabela = 'microdados'),
+    dicionario_b0015 AS (
+        SELECT chave AS chave_b0015, valor AS descricao_b0015 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0015' AND id_tabela = 'microdados'),
+    dicionario_b0016 AS (
+        SELECT chave AS chave_b0016, valor AS descricao_b0016 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0016' AND id_tabela = 'microdados'),
+    dicionario_b0017 AS (
+        SELECT chave AS chave_b0017, valor AS descricao_b0017 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0017' AND id_tabela = 'microdados'),
+    dicionario_b0018 AS (
+        SELECT chave AS chave_b0018, valor AS descricao_b0018 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0018' AND id_tabela = 'microdados'),
+    dicionario_b0019 AS (
+        SELECT chave AS chave_b0019, valor AS descricao_b0019 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0019' AND id_tabela = 'microdados'),
+    dicionario_b00110 AS (
+        SELECT chave AS chave_b00110, valor AS descricao_b00110 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b00110' AND id_tabela = 'microdados'),
+    dicionario_b00111 AS (
+        SELECT chave AS chave_b00111, valor AS descricao_b00111 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b00111' AND id_tabela = 'microdados'),
+    dicionario_b00112 AS (
+        SELECT chave AS chave_b00112, valor AS descricao_b00112 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b00112' AND id_tabela = 'microdados'),
+    dicionario_b00113 AS (
+        SELECT chave AS chave_b00113, valor AS descricao_b00113 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b00113' AND id_tabela = 'microdados'),
+    dicionario_b002 AS (
+        SELECT chave AS chave_b002, valor AS descricao_b002 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b002' AND id_tabela = 'microdados'),
+    dicionario_b0041 AS (
+        SELECT chave AS chave_b0041, valor AS descricao_b0041 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0041' AND id_tabela = 'microdados'),
+    dicionario_b0042 AS (
+        SELECT chave AS chave_b0042, valor AS descricao_b0042 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0042' AND id_tabela = 'microdados'),
+    dicionario_b0045 AS (
+        SELECT chave AS chave_b0045, valor AS descricao_b0045 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b0045' AND id_tabela = 'microdados'),
+    dicionario_b005 AS (
+        SELECT chave AS chave_b005, valor AS descricao_b005 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b005' AND id_tabela = 'microdados'),
+    dicionario_b008 AS (
+        SELECT chave AS chave_b008, valor AS descricao_b008 FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b008' AND id_tabela = 'microdados'),
+    dicionario_b009b AS (
+        SELECT chave AS chave_b009b, valor AS descricao_b009b FROM `basedosdados.br_ibge_pnad_covid.dicionario` WHERE nome_coluna = 'b009b' AND id_tabela = 'microdados'
+    )
+    SELECT
+        dados.ano, dados.mes, descricao_capital AS capital, dados.a002 as idade, descricao_a003 AS sexo, descricao_b0011 AS febre,
+        descricao_b0012 AS tosse, descricao_b0013 AS dor_de_garganta, descricao_b0014 AS dificuldade_respiratoria, descricao_b0015 AS dor_de_cabeca,
+        descricao_b0016 AS dor_no_peito, descricao_b0017 AS nausea, descricao_b0018 AS nariz_entupido, descricao_b0019 AS fadiga,
+        descricao_b00110 AS dor_nos_olhos, descricao_b00111 AS perda_olfato_paladar, descricao_b00112 AS dor_muscular, descricao_b00113 AS diarreia,
+        descricao_b002 AS procurou_atendimento, descricao_b0041 AS atendimento_posto_saude, descricao_b0042 AS atendimento_pronto_socorro,
+        descricao_b0045 AS atendimento_hospital, descricao_b005 AS foi_internado, descricao_b008 AS escolaridade, descricao_b009b AS fez_teste
+    FROM `basedosdados.br_ibge_pnad_covid.microdados` AS dados
+    LEFT JOIN `dicionario_capital` ON dados.capital = chave_capital LEFT JOIN `dicionario_a003` ON dados.a003 = chave_a003
+    LEFT JOIN `dicionario_b0011` ON dados.b0011 = chave_b0011 LEFT JOIN `dicionario_b0012` ON dados.b0012 = chave_b0012
+    LEFT JOIN `dicionario_b0013` ON dados.b0013 = chave_b0013 LEFT JOIN `dicionario_b0014` ON dados.b0014 = chave_b0014
+    LEFT JOIN `dicionario_b0015` ON dados.b0015 = chave_b0015 LEFT JOIN `dicionario_b0016` ON dados.b0016 = chave_b0016
+    LEFT JOIN `dicionario_b0017` ON dados.b0017 = chave_b0017 LEFT JOIN `dicionario_b0018` ON dados.b0018 = chave_b0018
+    LEFT JOIN `dicionario_b0019` ON dados.b0019 = chave_b0019 LEFT JOIN `dicionario_b00110` ON dados.b00110 = chave_b00110
+    LEFT JOIN `dicionario_b00111` ON dados.b00111 = chave_b00111 LEFT JOIN `dicionario_b00112` ON dados.b00112 = chave_b00112
+    LEFT JOIN `dicionario_b00113` ON dados.b00113 = chave_b00113 LEFT JOIN `dicionario_b002` ON dados.b002 = chave_b002
+    LEFT JOIN `dicionario_b0041` ON dados.b0041 = chave_b0041 LEFT JOIN `dicionario_b0042` ON dados.b0042 = chave_b0042
+    LEFT JOIN `dicionario_b0045` ON dados.b0045 = chave_b0045 LEFT JOIN `dicionario_b005` ON dados.b005 = chave_b005
+    LEFT JOIN `dicionario_b008` ON dados.b008 = chave_b008 LEFT JOIN `dicionario_b009b` ON dados.b009b = chave_b009b
+)
+-- Etapa final: Tratamento de valores nulos para todas as colunas de texto
+SELECT 
+    ano, mes, idade, 
+    COALESCE(capital, 'Não Informado') as capital, COALESCE(sexo, 'Não Informado') as sexo, COALESCE(febre, 'Não Informado') as febre,
+    COALESCE(tosse, 'Não Informado') as tosse, COALESCE(dor_de_garganta, 'Não Informado') as dor_de_garganta,
+    COALESCE(dificuldade_respiratoria, 'Não Informado') as dificuldade_respiratoria, COALESCE(dor_de_cabeca, 'Não Informado') as dor_de_cabeca,
+    COALESCE(dor_no_peito, 'Não Informado') as dor_no_peito, COALESCE(nausea, 'Não Informado') as nausea,
+    COALESCE(nariz_entupido, 'Não Informado') as nariz_entupido, COALESCE(fadiga, 'Não Informado') as fadiga,
+    COALESCE(dor_nos_olhos, 'Não Informado') as dor_nos_olhos, COALESCE(perda_olfato_paladar, 'Não Informado') as perda_olfato_paladar,
+    COALESCE(dor_muscular, 'Não Informado') as dor_muscular, COALESCE(diarreia, 'Não Informado') as diarreia,
+    COALESCE(procurou_atendimento, 'Não Informado') as procurou_atendimento, COALESCE(atendimento_posto_saude, 'Não Informado') as atendimento_posto_saude,
+    COALESCE(atendimento_pronto_socorro, 'Não Informado') as atendimento_pronto_socorro, COALESCE(atendimento_hospital, 'Não Informado') as atendimento_hospital,
+    COALESCE(foi_internado, 'Não Informado') as foi_internado, COALESCE(escolaridade, 'Não Informado') as escolaridade,
+    COALESCE(fez_teste, 'Não Informado') as fez_teste
+FROM dados_decodificados;
